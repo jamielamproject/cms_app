@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+          Shop
+      </ion-title>
+  
+      <ion-buttons left>
+          <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        </ion-buttons>
+
+      <ion-buttons right>
+        <button ion-button icon-only class="cart-button" (click)="openCart()">
+          <ion-icon name="cart">
+            <!-- <ion-badge color="secondary">{{shared.cartquantity}}</ion-badge> -->
+            <ion-badge color="secondary">0</ion-badge>
+
+          </ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  
+    <ion-toolbar class="toolbar-secondary">
+      <ion-slides slidesPerView="{{pageNumber}}" dir="{{shared.dir}}">
+        <ion-slide [class.selected]="selectedTab==''" *ngIf="shared.subCategories!=null" (click)="changeTab('')">All</ion-slide>
+  
+        <ion-slide [class.selected]="selectedTab==c.id" *ngFor="let c of shared.subCategories" (click)="changeTab(c)">
+          {{c.name}}
+        </ion-slide>
+      </ion-slides>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+  <div class="test">hihi</div>
+  <ion-card class="animated fadeIn">
+    <div class="card-thumb">
+      <!-- <div class="card-tag-new" *ngIf="checkProductNew()" translate></div>
+      <div class="card-tag-off" *ngIf="p.discount_price!=null">{{pDiscount()}} {{'OFF'|translate}}</div>
+      <img class="image" src="{{config.url+p.products_image}}" (click)="showProductDetail()"/> -->
+    </div>
+    </ion-card>
+</ion-content>
