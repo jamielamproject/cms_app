@@ -174,16 +174,16 @@ export class ProductPage {
   ionViewDidLoad() {
    // console.log("loaded");
 
-   try {
-    setTimeout(() => {
-      let ind = 0;
-      this.shared.subCategories.forEach((value, index) => {
-        if (this.selectedTab == value.id) { ind = index; }
-      });
-      this.slides.slideTo(ind, 1000, true);
-    }, 100);
-  } catch (error) {
+  //  try {
+  //   setTimeout(() => {
+  //     let ind = 0;
+  //     this.shared.subCategories.forEach((value, index) => {
+  //       if (this.selectedTab == value.id) { ind = index; }
+  //     });
+  //     this.slides.slideTo(ind, 1000, true);
+  //   }, 100);
+  // } catch (error) {
 
-  }
+  // }
   }
 }

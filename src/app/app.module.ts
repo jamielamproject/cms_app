@@ -20,7 +20,6 @@ import { TabsPage } from '../pages/tabs/tabs'
 import { ProductPage } from '../pages/product/product'
 import { Tab2Page } from '../pages/tab2/tab2'
 import { SpecialPage } from '../pages/special/special'
-import { MenuPage } from '../pages/menu/menu'
 import { LoginPage } from '../pages/login/login';
 
 //Provide
@@ -36,7 +35,6 @@ import { SharedDataProvider } from '../providers/shared-data/shared-data';
     MyApp,
     HomePage,
     LoginPage,
-    MenuPage,
     TabsPage,
     ProductPage,
     Tab2Page,
@@ -63,7 +61,6 @@ import { SharedDataProvider } from '../providers/shared-data/shared-data';
     MyApp,
     HomePage,
     LoginPage,
-    MenuPage,
     TabsPage,
     ProductPage,
     Tab2Page,

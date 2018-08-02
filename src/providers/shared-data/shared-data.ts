@@ -105,7 +105,7 @@ export class SharedDataProvider {
         if (value.parent_id == 0) this.categories.push(value);
         else this.subCategories.push(value);
       }
-      console.log('this.subCategories : ' + JSON.stringify(this.subCategories));
+      // console.log('this.subCategories : ' + JSON.stringify(this.subCategories));
     });
     // //getting recent viewed items from local storage
     // storage.get('customerData').then((val) => {
