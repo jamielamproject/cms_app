@@ -29,6 +29,8 @@ import { createTranslateLoader } from '../providers/translate/translate';
 import { LoadingProvider } from '../providers/loading/loading';
 import { SharedDataProvider } from '../providers/shared-data/shared-data';
 
+// Components
+import { ProductComponent } from '../components/product/product';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { SharedDataProvider } from '../providers/shared-data/shared-data';
     ProductPage,
     Tab2Page,
     SpecialPage,
+    ProductComponent
     // SlidingTabsComponent,
   ],
   imports: [
@@ -65,6 +68,7 @@ import { SharedDataProvider } from '../providers/shared-data/shared-data';
     ProductPage,
     Tab2Page,
     SpecialPage,
+    ProductComponent
     // SlidingTabsComponent
   ],
   providers: [

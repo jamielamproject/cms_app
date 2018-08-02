@@ -51,7 +51,7 @@ export class ProductPage {
     if (this.navParams.get('id') != undefined) this.selectedTab = this.categoryId = this.navParams.get('id');
     if (this.navParams.get('name') != undefined) this.categoryName = this.navParams.get('name');
     if (this.navParams.get('sortOrder') != undefined) this.sortOrder = this.navParams.get('sortOrder');
-    this.getProducts(null);
+    
     // this.getFilters(this.categoryId);
   }
 
