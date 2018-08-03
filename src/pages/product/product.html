@@ -35,8 +35,7 @@
 <ion-content padding>
   <ion-grid *ngIf="productView=='grid'">
     <ion-col *ngFor="let p of products" col-6>
-      hi
-      <!-- <product [data]="p" [type]="'normal'"></product> -->
+      <product [data]="p" [type]="'normal'"></product>
     </ion-col>
 
     <!-- <ion-col *ngIf="products.length==0 && !httpRunning" col-12 class="animated fadeIn">

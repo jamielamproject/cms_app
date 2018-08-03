@@ -9,6 +9,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Device } from '@ionic-native/device';
+
 // import { SlidingTabsComponent } from '../components/sliding-tabs/sliding-tabs';
 
 
@@ -32,6 +33,9 @@ import { SharedDataProvider } from '../providers/shared-data/shared-data';
 // Components
 import { ProductComponent } from '../components/product/product';
 
+// Library
+import { CurencyPipe } from '../curency/curency';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -41,7 +45,8 @@ import { ProductComponent } from '../components/product/product';
     ProductPage,
     Tab2Page,
     SpecialPage,
-    ProductComponent
+    ProductComponent,
+    CurencyPipe,
     // SlidingTabsComponent,
   ],
   imports: [

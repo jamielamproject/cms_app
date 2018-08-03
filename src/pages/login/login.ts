@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ViewController, NavController, NavParams } from 'ionic-angular';
+import { Http } from '@angular/http';
+
+import { LoadingProvider } from '../../providers/loading/loading';
+import { ConfigProvider } from '../../providers/config/config';
+import { SharedDataProvider } from '../../providers/shared-data/shared-data';
+
 
 import { TabsPage } from '../../pages/tabs/tabs';
 
@@ -15,15 +21,48 @@ import { TabsPage } from '../../pages/tabs/tabs';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  formData = { customers_email_address: '', customers_password: '' };
+  errorMessage = '';
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     public http: Http,
+     public viewCtrl: ViewController,
+     public config: ConfigProvider,
+     public shared: SharedDataProvider,
+     public loading: LoadingProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-  doLogin() {
-    this.navCtrl.setRoot(TabsPage);
+  login() {
+    this.loading.show();
+    this.errorMessage = '';
+    console.log(JSON.stringify(this.formData));
+    this.http.post(this.config.url + 'processLogin', this.formData).map(res => res.json()).subscribe((data:any) => {
+      this.loading.hide();
+      console.log('processLogin : ' + JSON.stringify(data));
+      if (data.success == 1) {
+        this.shared.login(data.data[0]);
+        this.openPage();
+        console.log('login successful');
+      }else
+      if (data.success == 0) {
+        this.errorMessage = data.message;
+        console.log('login fail : ' + this.errorMessage);
+      }else{
+        console.log('Dont know');
+      }
+    });
   }
 
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
+  openPage() {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.navCtrl.setRoot(TabsPage);
+  }
 }

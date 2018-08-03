@@ -51,7 +51,7 @@ export class ProductPage {
     if (this.navParams.get('id') != undefined) this.selectedTab = this.categoryId = this.navParams.get('id');
     if (this.navParams.get('name') != undefined) this.categoryName = this.navParams.get('name');
     if (this.navParams.get('sortOrder') != undefined) this.sortOrder = this.navParams.get('sortOrder');
-    
+    this.getProducts(null);
     // this.getFilters(this.categoryId);
   }
 
@@ -59,7 +59,7 @@ export class ProductPage {
 
     if (this.page == 0) { this.loading.show(); }
     var data: { [k: string]: any } = {};
-    if (this.shared.customerData != null)//in case user is logged in customer id will be send to the server to get user liked products
+    // if (this.shared.customerData != null)//in case user is logged in customer id will be send to the server to get user liked products
       // data.customers_id = this.shared.customerData.customers_id;
     // if (this.applyFilter == true) {
     //   data.filters = this.selectedFilters;
@@ -69,7 +69,7 @@ export class ProductPage {
     data.page_number = this.page;
     data.type = this.sortOrder;
     data.language_id = this.config.langId;
-    console.log('data : ' + data.success);
+    // console.log('data : ' + JSON.stringify(data));
     this.http.post(this.config.url + 'getAllProducts', data).map(res => res.json()).subscribe(data => {
       // console.log(data.product_data.length + "   " + this.page);
       // this.infinite.complete();
