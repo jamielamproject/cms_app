@@ -16,7 +16,7 @@
         <h4 class="card-price-normal" *ngIf="p.discount_price!=null">{{p.discount_price|curency}}</h4>
       </ion-col>
       <ion-col text-center col-4>
-        <!-- <ion-icon [name]="p.isLiked=='0'? 'heart-outline' : 'heart'" (click)="clickWishList()"></ion-icon> -->
+        <ion-icon [name]="p.isLiked=='0'? 'heart-outline' : 'heart'" (click)="clickWishList()"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-card-content>
@@ -25,20 +25,20 @@
       <button ion-button block color="danger" (click)="removeWishList();">
         {{'REMOVE'|translate}}
       </button>
-  </ion-buttons>
+  </ion-buttons> -->
 
   <ion-buttons *ngIf="type=='normal'">
-    <button ion-button block color="secondary" *ngIf="config.cartButton==1 && p.products_quantity!=0" (click)="addToCart(p);">{{'ADD TO CART'|translate}}</button>
-    <button ion-button block color="danger" *ngIf="config.cartButton==1 && p.products_quantity==0">{{'OUT OF STOCK'|translate}}</button>
+    <button ion-button block color="secondary" *ngIf="config.cartButton==1 && p.products_quantity!=0" (click)="addToCart(p);">ADD TO CART</button>
+    <button ion-button block color="danger" *ngIf="config.cartButton==1 && p.products_quantity==0">OUT OF STOCK</button>
   </ion-buttons>
 
-  <ion-buttons class="bar-buttons-remove"  *ngIf="type=='recent'">
+  <!-- <ion-buttons class="bar-buttons-remove"  *ngIf="type=='recent'">
     <button ion-button block color="danger" (click)="removeRecent()">{{'REMOVE'|translate}}</button>
-  </ion-buttons>
+  </ion-buttons> -->
 
   <ion-row class="card-add-cart" *ngIf="isInCart()" (click)="showProductDetail()">
       <ion-icon name="checkmark-circle"></ion-icon>
-  </ion-row> -->
+  </ion-row>
 </ion-card>
 
 

@@ -74,6 +74,7 @@ export class SharedDataProvider {
     // private fcm: FCM
     //private fb: Facebook,
   ) {
+    console.log('Share : ');
     // //getting all banners
     // this.http.get(config.url + 'getBanners').map(res => res.json()).subscribe(data => {
     //   this.banners = data.data;
@@ -120,7 +121,7 @@ export class SharedDataProvider {
     storage.get('cartProducts').then((val) => {
       if (val != null) this.cartProducts = val;
       this.cartTotalItems();
-      // console.log(val);
+      // console.log('cartProducts : ' + val);
     });
 
     // //getting allpages from the server
@@ -269,44 +270,44 @@ export class SharedDataProvider {
       total += value.customers_basket_quantity;
     }
     this.cartquantity = total;
-    // console.log("updated");
+    console.log("cartTotalItems updated");
     return total;
   };
 
-//   removeWishList(p) {
-//     this.loading.show();
-//     let data: { [k: string]: any } = {};
-//     data.liked_customers_id = this.customerData.customers_id;
-//     data.liked_products_id = p.products_id;
-//     this.http.post(this.config.url + 'unlikeProduct', data).map(res => res.json()).subscribe(data => {
-//       this.loading.hide();
-//       if (data.success == 1) {
-//         this.events.publish('wishListUpdate', p.products_id, 0);
-//         p.isLiked = 0;
-//         this.wishList.forEach((value, index) => {
-//           if (value.products_id == p.products_id) this.wishList.splice(index, 1);
-//         });
-//       }
-//       if (data.success == 0) {
+  removeWishList(p) {
+    this.loading.show();
+    let data: { [k: string]: any } = {};
+    data.liked_customers_id = this.customerData.customers_id;
+    data.liked_products_id = p.products_id;
+    this.http.post(this.config.url + 'unlikeProduct', data).map(res => res.json()).subscribe(data => {
+      this.loading.hide();
+      if (data.success == 1) {
+        this.events.publish('wishListUpdate', p.products_id, 0);
+        p.isLiked = 0;
+        this.wishList.forEach((value, index) => {
+          if (value.products_id == p.products_id) this.wishList.splice(index, 1);
+        });
+      }
+      if (data.success == 0) {
 
-//       }
-//     });
-//   }
-//   addWishList(p) {
-//     this.loading.show();
-//     let data: { [k: string]: any } = {};
-//     data.liked_customers_id = this.customerData.customers_id;
-//     data.liked_products_id = p.products_id;
-//     this.http.post(this.config.url + 'likeProduct', data).map(res => res.json()).subscribe(data => {
-//       this.loading.hide();
-//       if (data.success == 1) {
-//         this.events.publish('wishListUpdate', p.products_id, 1);
-//         p.isLiked = 1;
-//       }
+      }
+    });
+  }
+  addWishList(p) {
+    this.loading.show();
+    let data: { [k: string]: any } = {};
+    data.liked_customers_id = this.customerData.customers_id;
+    data.liked_products_id = p.products_id;
+    this.http.post(this.config.url + 'likeProduct', data).map(res => res.json()).subscribe(data => {
+      this.loading.hide();
+      if (data.success == 1) {
+        this.events.publish('wishListUpdate', p.products_id, 1);
+        p.isLiked = 1;
+      }
 
-//       if (data.success == 0) { }
-//     });
-//   }
+      if (data.success == 0) { }
+    });
+  }
 
 
   login(data) {

@@ -13,8 +13,7 @@
       <ion-buttons right>
         <button ion-button icon-only class="cart-button" (click)="openCart()">
           <ion-icon name="cart">
-            <!-- <ion-badge color="secondary">{{shared.cartquantity}}</ion-badge> -->
-            <ion-badge color="secondary">0</ion-badge>
+            <ion-badge color="secondary">{{shared.cartquantity}}</ion-badge>
 
           </ion-icon>
         </button>
@@ -38,8 +37,8 @@
       <product [data]="p" [type]="'normal'"></product>
     </ion-col>
 
-    <!-- <ion-col *ngIf="products.length==0 && !httpRunning" col-12 class="animated fadeIn">
-      <h6 text-center>{{'No Products Found!'|translate}}</h6>
-    </ion-col> -->
+    <ion-col *ngIf="products.length==0 && !httpRunning" col-12 class="animated fadeIn">
+      <h6 text-center>No Products Found!</h6>
+    </ion-col>
   </ion-grid>
 </ion-content>

@@ -59,8 +59,8 @@ export class ProductPage {
 
     if (this.page == 0) { this.loading.show(); }
     var data: { [k: string]: any } = {};
-    // if (this.shared.customerData != null)//in case user is logged in customer id will be send to the server to get user liked products
-      // data.customers_id = this.shared.customerData.customers_id;
+    if (this.shared.customerData != null)//in case user is logged in customer id will be send to the server to get user liked products
+      data.customers_id = this.shared.customerData.customers_id;
     // if (this.applyFilter == true) {
     //   data.filters = this.selectedFilters;
     //   data.price = { minPrice: this.price.lower, maxPrice: this.price.upper };

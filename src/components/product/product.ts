@@ -59,7 +59,7 @@ export class ProductComponent {
       return false
   }
 
-  // addToCart() { this.shared.addToCart(this.p, []); }
+  addToCart() { this.shared.addToCart(this.p, []); }
 
   isInCart() {
     var found = false;
@@ -75,23 +75,23 @@ export class ProductComponent {
   //   this.shared.removeRecent(this.p);
   // }
 
-  // clickWishList() {
+  clickWishList() {
 
-  //   if (this.shared.customerData.customers_id == null || this.shared.customerData.customers_id == undefined) {
-  //     let modal = this.modalCtrl.create(LoginPage);
-  //     modal.present();
-  //   }
-  //   else {
-  //     if (this.p.isLiked == '0') { this.addWishList(); }
-  //     else this.removeWishList();
-  //   }
-  // }
-  // addWishList() {
-  //   this.shared.addWishList(this.p);
-  // }
-  // removeWishList() {
-  //   this.shared.removeWishList(this.p);
-  // }
+    if (this.shared.customerData.customers_id == null || this.shared.customerData.customers_id == undefined) {
+      let modal = this.modalCtrl.create(LoginPage);
+      modal.present();
+    }
+    else {
+      if (this.p.isLiked == '0') { this.addWishList(); }
+      else this.removeWishList();
+    }
+  }
+  addWishList() {
+    this.shared.addWishList(this.p);
+  }
+  removeWishList() {
+    this.shared.removeWishList(this.p);
+  }
 
 
   // ngOnChanges() {
