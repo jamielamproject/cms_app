@@ -38,7 +38,7 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     public shared: SharedDataProvider,
-    // public translate: TranslateService,
+    public translate: TranslateService,
     public config: ConfigProvider) {
     platform.ready().then(() => {
     //   // Okay, so the platform is ready and our plugins are available.
@@ -53,6 +53,8 @@ export class MyApp {
     // console.log('url : ' + this.config.url + "appLabels3?lang=" + this.config.langId);
     //  translate.setDefaultLang(this.config.url + "appLabels3?lang=" + this.config.langId);
     //  translate.setDefaultLang('zh');
+    translate.setDefaultLang('zh');
+    translate.use('zh');
   }
 
   openPage(page) {

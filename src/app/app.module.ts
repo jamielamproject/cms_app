@@ -6,6 +6,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicStorageModule } from '@ionic/storage';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -37,11 +38,9 @@ import { ProductComponent } from '../components/product/product';
 // Library
 import { CurencyPipe } from '../curency/curency';
 
-export function createTranslateLoader(http: Http) {
-  // if your are using this version please do not paste the url below there is no need to add url here 
-  // return new TranslateHttpLoader(http, '', "");
+export function createTranslateLoader(http: HttpClient) {
+    // return new TranslateHttpLoader(http, '', "");
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-
 }
 
 @NgModule({
@@ -65,11 +64,12 @@ export function createTranslateLoader(http: Http) {
     BrowserModule,
     IonicStorageModule.forRoot(),
     LazyLoadImageModule,
+    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
-        deps: [Http]
+        deps: [HttpClient]
       }
     }),
   ],
