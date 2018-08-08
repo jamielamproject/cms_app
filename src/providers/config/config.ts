@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 export class ConfigProvider {
   public url: string = 'http://34.219.149.197/cms/';
   public langId: string = "1";
+  // public langId: string = localStorage.langId;
   public loader = 'dots';
   public newProductDuration = 100;
   public cartButton = 1;//1 = show and 0 = hide

@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule, Http } from '@angular/http';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,11 +23,11 @@ import { ProductPage } from '../pages/product/product'
 import { Tab2Page } from '../pages/tab2/tab2'
 import { SpecialPage } from '../pages/special/special'
 import { LoginPage } from '../pages/login/login';
+import { ProductDetailPage } from '../pages/product-detail/product-detail';
 
 //Provide
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { ConfigProvider } from '../providers/config/config';
-import { createTranslateLoader } from '../providers/translate/translate';
 import { LoadingProvider } from '../providers/loading/loading';
 import { SharedDataProvider } from '../providers/shared-data/shared-data';
 
@@ -35,6 +36,13 @@ import { ProductComponent } from '../components/product/product';
 
 // Library
 import { CurencyPipe } from '../curency/curency';
+
+export function createTranslateLoader(http: Http) {
+  // if your are using this version please do not paste the url below there is no need to add url here 
+  // return new TranslateHttpLoader(http, '', "");
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+
+}
 
 @NgModule({
   declarations: [
@@ -47,6 +55,7 @@ import { CurencyPipe } from '../curency/curency';
     SpecialPage,
     ProductComponent,
     CurencyPipe,
+    ProductDetailPage
     // SlidingTabsComponent,
   ],
   imports: [
@@ -73,7 +82,8 @@ import { CurencyPipe } from '../curency/curency';
     ProductPage,
     Tab2Page,
     SpecialPage,
-    ProductComponent
+    ProductComponent,
+    ProductDetailPage
     // SlidingTabsComponent
   ],
   providers: [
