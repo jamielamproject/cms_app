@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
 import { ConfigProvider } from '../../providers/config/config';
 import { SharedDataProvider } from '../../providers/shared-data/shared-data';
 import { NavController, NavParams, ModalController, Events } from 'ionic-angular';
-// import { ProductDetailPage } from '../../pages/product-detail/product-detail';
+import { ProductDetailPage } from '../../pages/product-detail/product-detail';
 import { LoginPage } from '../../pages/login/login';
 
 @Component({
@@ -44,10 +44,10 @@ export class ProductComponent {
     return rtn;
   }
 
-  // showProductDetail() {
-  //   this.navCtrl.push(ProductDetailPage, { data: this.p });
-  //   if (this.type != 'recent') this.shared.addToRecent(this.p);
-  // }
+  showProductDetail() {
+    this.navCtrl.push(ProductDetailPage, { data: this.p });
+    // if (this.type != 'recent') this.shared.addToRecent(this.p);
+  }
 
   checkProductNew() {
     var pDate = new Date(this.p.products_date_added);
@@ -65,7 +65,7 @@ export class ProductComponent {
     var found = false;
 
     for (let value of this.shared.cartProducts) {
-      if (value.products_id == this.p.products_id) { found = true; }
+      if (value.products_id == this.p.products_id) { found = true; break;}
     }
 
     if (found == true) return true;

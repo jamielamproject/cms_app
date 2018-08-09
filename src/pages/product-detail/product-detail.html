@@ -1,4 +1,4 @@
-<!-- <ion-header>
+<ion-header>
   <ion-navbar>
     <ion-title>
       {{'Product Details'| translate }}
@@ -10,10 +10,10 @@
 
   <ion-slides pager="true" dir="{{shared.dir}}">
     <ion-slide *ngIf="product!=null">
-      <img src="{{config.imgUrl+product.products_image}}" imageViewer>
+      <img src="{{config.url+product.products_image}}" imageViewer>
     </ion-slide>
     <ion-slide *ngFor="let b of product.images">
-      <img src="{{config.imgUrl+b.image}}" imageViewer>
+      <img src="{{config.url+b.image}}" imageViewer>
     </ion-slide>
   </ion-slides>
 
@@ -25,7 +25,6 @@
           <br>
           <small>{{product.categories_name}}</small>
         </h3>
-        <p>{{'Likes'|translate}}&nbsp;({{product.products_liked}})</p>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -46,7 +45,8 @@
         <ion-icon name="share" (click)="share()"></ion-icon>
         <ion-icon [name]="product.isLiked=='0'? 'heart-outline' : 'heart'" (click)="clickWishList()"></ion-icon>
       </ion-col>
-      <button ion-button block color="secondary" *ngIf="product.products_quantity!='0'" (click)="addToCartProduct()">{{'Add to Cart'|translate}}</button>
+      <button ion-button block color="secondary" *ngIf="product.products_quantity!='0' && !isInCart(product.products_id)" (click)="addToCartProduct()">{{'Add to Cart'|translate}}</button>
+      <button ion-button block color="danger" *ngIf="product.products_quantity!='0' && isInCart(product.products_id)">{{'In the cart'|translate}}</button>
       <button ion-button block color="danger" *ngIf="product.products_quantity=='0'">{{'OUT OF STOCK'|translate}}</button>
     </ion-row>
   </ion-grid>
@@ -77,4 +77,4 @@
       <ion-radio [value]="val" [checked]="i==0" (ionSelect)="fillAttributes(val,att.option.id)"></ion-radio>
     </ion-item>
   </ion-list>
-</ion-content> -->
+</ion-content>

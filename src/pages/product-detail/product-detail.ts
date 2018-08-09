@@ -63,6 +63,14 @@ export class ProductDetailPage {
     this.navCtrl.pop();
   }
 
+  isInCart(products_id){
+    var found = false;
+    for (let value of this.shared.cartProducts) {
+      if (value.products_id == products_id) { found = true; break; }
+    }
+    if (found == true) return true;
+    else return false;
+  }
   //============================================================================================  
   //function adding attibute into array
   fillAttributes = function (val, optionID) {
