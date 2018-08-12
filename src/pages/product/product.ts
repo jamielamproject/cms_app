@@ -6,7 +6,7 @@ import { SharedDataProvider } from '../../providers/shared-data/shared-data';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { TranslateService } from '@ngx-translate/core';
 import { share } from 'rxjs/operator/share';
-// import { CartPage } from '../cart/cart';
+import { CartPage } from '../cart/cart';
 /**
  * Generated class for the Tab1Page page.
  *
@@ -170,7 +170,7 @@ export class ProductPage {
     //   console.log(e);
   }
   openCart() {
-    // this.navCtrl.push(CartPage);
+    this.navCtrl.push(CartPage);
   }
   ionViewDidLoad() {
    // console.log("loaded");

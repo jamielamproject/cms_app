@@ -25,13 +25,14 @@ import { Tab2Page } from '../pages/tab2/tab2'
 import { SpecialPage } from '../pages/special/special'
 import { LoginPage } from '../pages/login/login';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
+import { CartPage } from '../pages/cart/cart';
 
 //Provide
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { ConfigProvider } from '../providers/config/config';
 import { LoadingProvider } from '../providers/loading/loading';
 import { SharedDataProvider } from '../providers/shared-data/shared-data';
-
+import { Toast } from '@ionic-native/toast';
 // Components
 import { ProductComponent } from '../components/product/product';
 
@@ -54,11 +55,11 @@ export function createTranslateLoader(http: HttpClient) {
     SpecialPage,
     ProductComponent,
     CurencyPipe,
-    ProductDetailPage
+    ProductDetailPage,
+    CartPage
     // SlidingTabsComponent,
   ],
   imports: [
-    BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
     BrowserModule,
@@ -83,7 +84,8 @@ export function createTranslateLoader(http: HttpClient) {
     Tab2Page,
     SpecialPage,
     ProductComponent,
-    ProductDetailPage
+    ProductDetailPage,
+    CartPage
     // SlidingTabsComponent
   ],
   providers: [
@@ -94,6 +96,7 @@ export function createTranslateLoader(http: HttpClient) {
     LoadingProvider,
     SharedDataProvider,
     Device,
+    Toast,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

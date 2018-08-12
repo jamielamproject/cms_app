@@ -2,7 +2,7 @@
     <ion-navbar>
       <ion-title>
           <!-- Shop -->
-          {{ 'HELLO' | translate }}
+          {{ 'Shop' | translate }}
       </ion-title>
   
       <ion-buttons left>
@@ -32,7 +32,7 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-grid *ngIf="productView=='grid'">
     <ion-col *ngFor="let p of products" col-6>
       <product [data]="p" [type]="'normal'"></product>
