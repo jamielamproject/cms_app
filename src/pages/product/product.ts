@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, InfiniteScroll, Content, ActionSheetController, Slides } from 'ionic-angular';
 import { ConfigProvider } from '../../providers/config/config';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { SharedDataProvider } from '../../providers/shared-data/shared-data';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { TranslateService } from '@ngx-translate/core';
@@ -36,6 +36,8 @@ export class ProductPage {
   applyFilter = false;
   sortOrder = 'newest';
 
+  httpRunning = true;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,7 +45,7 @@ export class ProductPage {
     public shared: SharedDataProvider,
     public loading: LoadingProvider,
     public translate: TranslateService,
-    public http: Http,
+    public httpClient: HttpClient,
     public actionSheet: ActionSheetController
   ) {
     translate.use('zh');
@@ -57,7 +59,7 @@ export class ProductPage {
   }
 
   getProducts(infiniteScroll) {
-
+    this.httpRunning = true;
     if (this.page == 0) { this.loading.show(); }
     var data: { [k: string]: any } = {};
     if (this.shared.customerData != null)//in case user is logged in customer id will be send to the server to get user liked products
@@ -71,8 +73,9 @@ export class ProductPage {
     data.type = this.sortOrder;
     data.language_id = this.config.langId;
     // console.log('data : ' + JSON.stringify(data));
-    this.http.post(this.config.url + 'getAllProducts', data).map(res => res.json()).subscribe(data => {
-      // console.log(data.product_data.length + "   " + this.page);
+    this.httpClient.post(this.config.url + 'getallproducts', data).subscribe((data: any) => {
+      this.httpRunning = false;
+      console.log(data.product_data.length + "   " + JSON.stringify(data));
       // this.infinite.complete();
       if (this.page == 0) { this.products = new Array; this.loading.hide(); this.scrollToTop(); }
       if (data.success == 1) {
@@ -82,13 +85,11 @@ export class ProductPage {
           this.products.push(value);
         }
       }
-      if (data.success == 1 && data.product_data != undefined && data.product_data.length == 0) { 
-        // this.infinite.enable(false);
-       }
-      if (data.success == 0) { 
-        // this.infinite.enable(false);
-       }
+      // if (data.success == 1 && data.product_data.length == 0) { this.infinite.enable(false); }
+      // if (data.success == 0) { this.infinite.enable(false); }
 
+    }, (error: any) => {
+      this.httpRunning = false;
     });
 
   }

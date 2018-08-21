@@ -50,8 +50,8 @@ export class MyApp {
     // this.platform.setDir(localStorage.direction, true);
     // shared.dir = localStorage.direction;
     //setting default languge on start up 
-    // console.log('url : ' + this.config.url + "appLabels3?lang=" + this.config.langId);
-    //  translate.setDefaultLang(this.config.url + "appLabels3?lang=" + this.config.langId);
+    // console.log('url : ' + this.config.url + "applabels3?lang=" + this.config.langId);
+    //  translate.setDefaultLang(this.config.url + "applabels3?lang=" + this.config.langId);
     //  translate.setDefaultLang('zh');
     translate.setDefaultLang('zh');
     translate.use('zh');

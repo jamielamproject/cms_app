@@ -39,7 +39,7 @@ export class LoginPage {
     this.loading.show();
     this.errorMessage = '';
     console.log(JSON.stringify(this.formData));
-    this.http.post(this.config.url + 'processLogin', this.formData).map(res => res.json()).subscribe((data:any) => {
+    this.http.post(this.config.url + 'processlogin', this.formData).map(res => res.json()).subscribe((data:any) => {
       this.loading.hide();
       console.log('processLogin : ' + JSON.stringify(data));
       if (data.success == 1) {

@@ -10,7 +10,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 
 export class ConfigProvider {
-  public url: string = 'http://34.219.149.197/cms/';
+  public url: string = 'http://54.201.84.88/cms/app/';
+  public imgUrl: string = 'http://54.201.84.88/cms/';
   public langId: string = "1";
   // public langId: string = localStorage.langId;
   public loader = 'dots';

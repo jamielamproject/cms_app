@@ -101,7 +101,7 @@ export class SharedDataProvider {
     // });
 
     //getting all allCategories
-    this.http.post(config.url + 'allCategories', { language_id: config.langId }).map(res => res.json()).subscribe(data => {
+    this.http.post(config.url + 'allcategories', { language_id: config.langId }).map(res => res.json()).subscribe(data => {
       for (let value of data.data) {
         if (value.parent_id == 0) this.categories.push(value);
         else this.subCategories.push(value);
