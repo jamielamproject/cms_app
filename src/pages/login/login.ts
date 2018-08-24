@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController, NavController, NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { LoadingProvider } from '../../providers/loading/loading';
 import { ConfigProvider } from '../../providers/config/config';
@@ -25,7 +25,7 @@ export class LoginPage {
   errorMessage = '';
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
-     public http: Http,
+     public httpClient: HttpClient,
      public viewCtrl: ViewController,
      public config: ConfigProvider,
      public shared: SharedDataProvider,
@@ -35,13 +35,12 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+
   login() {
     this.loading.show();
     this.errorMessage = '';
-    console.log(JSON.stringify(this.formData));
-    this.http.post(this.config.url + 'processlogin', this.formData).map(res => res.json()).subscribe((data:any) => {
+    this.httpClient.post(this.config.url + 'processlogin', this.formData).subscribe((data:any) => {
       this.loading.hide();
-      console.log('processLogin : ' + JSON.stringify(data));
       if (data.success == 1) {
         this.shared.login(data.data[0]);
         this.openPage();
