@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import { ConfigProvider } from '../config/config';
@@ -64,7 +64,7 @@ export class SharedDataProvider {
 
   constructor(
     public config: ConfigProvider,
-    public http: Http,
+    public httpClient: HttpClient,
     private storage: Storage,
     public loading: LoadingProvider,
     public events: Events,
@@ -75,47 +75,14 @@ export class SharedDataProvider {
     //private fb: Facebook,
   ) {
     console.log('Share : ');
-    // //getting all banners
-    // this.http.get(config.url + 'getBanners').map(res => res.json()).subscribe(data => {
-    //   this.banners = data.data;
-    // });
-    // //getting tab 1
-    // let data: { [k: string]: any } = {};
-    // if (this.customerData.customers_id != null)
-    //   data.customers_id = this.customerData.customers_id;
-    // data.page_number = 0;
-    // data.language_id = config.langId;
-    // data.type = 'top seller';
-    // this.http.post(this.config.url + 'getAllProducts', data).map(res => res.json()).subscribe(data => {
-    //   this.tab1 = data.product_data
-    // });
-    // //getting tab 2
-    // data.type = 'special';
-    // this.http.post(this.config.url + 'getAllProducts', data).map(res => res.json()).subscribe(data => {
-    //   this.tab2 = data.product_data
-    // });
-    // //getting tab 3
-    // data.type = 'most liked';
-    // this.http.post(this.config.url + 'getAllProducts', data).map(res => res.json()).subscribe(data => {
-    //   this.tab3 = data.product_data
-    // });
 
     //getting all allCategories
-    this.http.post(config.url + 'allcategories', { language_id: config.langId }).map(res => res.json()).subscribe(data => {
+    this.httpClient.post(config.url + 'allcategories', { language_id: config.langId }).subscribe((data: any) => {
       for (let value of data.data) {
         if (value.parent_id == 0) this.categories.push(value);
         else this.subCategories.push(value);
       }
-      // console.log('this.subCategories : ' + JSON.stringify(this.subCategories));
     });
-    // //getting recent viewed items from local storage
-    // storage.get('customerData').then((val) => {
-    //   if (val != null || val != undefined) this.customerData = val;
-    // });
-    // //getting recent viewed items from local storage
-    // storage.get('recentViewedProducts').then((val) => {
-    //   if (val != null) this.recentViewedProducts = val;
-    // });
 
     //getting recent viewed items from local storage
     storage.get('cartProducts').then((val) => {
@@ -123,21 +90,6 @@ export class SharedDataProvider {
       this.cartTotalItems();
       // console.log('cartProducts : ' + val);
     });
-
-    // //getting allpages from the server
-    // this.http.post(config.url + 'getAllPages', { language_id: this.config.langId }).map(res => res.json()).subscribe(data => {
-    //   if (data.success == 1) {
-    //     let pages = data.pages_data;
-    //     for (let value of pages) {
-    //       if (value.slug == 'privacy-policy') this.privacyPolicy = value.description;
-    //       if (value.slug == 'term-services') this.termServices = value.description;
-    //       if (value.slug == 'refund-policy') this.refundPolicy = value.description;
-    //       if (value.slug == 'about-us') this.aboutUs = value.description;
-    //     }
-    //   }
-    // });
-
-    //subscribe for push notifiation
 
     //---------------- end -----------------
   }
@@ -279,7 +231,7 @@ export class SharedDataProvider {
     let data: { [k: string]: any } = {};
     data.liked_customers_id = this.customerData.customers_id;
     data.liked_products_id = p.products_id;
-    this.http.post(this.config.url + 'unlikeProduct', data).map(res => res.json()).subscribe(data => {
+    this.httpClient.post(this.config.url + 'unlikeproduct', data).subscribe((data: any) => {
       this.loading.hide();
       if (data.success == 1) {
         this.events.publish('wishListUpdate', p.products_id, 0);
@@ -298,7 +250,7 @@ export class SharedDataProvider {
     let data: { [k: string]: any } = {};
     data.liked_customers_id = this.customerData.customers_id;
     data.liked_products_id = p.products_id;
-    this.http.post(this.config.url + 'likeProduct', data).map(res => res.json()).subscribe(data => {
+    this.httpClient.post(this.config.url + 'likeproduct', data).subscribe((data: any) => {
       this.loading.hide();
       if (data.success == 1) {
         this.events.publish('wishListUpdate', p.products_id, 1);

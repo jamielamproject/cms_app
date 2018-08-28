@@ -13,7 +13,7 @@ import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
 // import { ShippingAddressPage } from '../shipping-address/shipping-address';
 import { trigger, style, animate, transition } from '@angular/animations';
-// import { ProductsPage } from '../products/products';
+import { ProductPage } from '../product/product';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -67,7 +67,7 @@ export class CartPage {
       dat.customers_id = null;
     dat.products_id = id;
     dat.language_id = this.config.langId;
-    this.httpClient.post(this.config.url + 'getAllProducts', dat).subscribe((data:any) => {
+    this.httpClient.post(this.config.url + 'getallproducts', dat).subscribe((data:any) => {
       this.loading.hide();
       if (data.success == 1) {
         this.navCtrl.push(ProductDetailPage, { data: data.product_data[0] });
@@ -118,7 +118,7 @@ export class CartPage {
     // }
   }
   openProductsPage() {
-    // this.navCtrl.push(ProductsPage, { sortOrder: 'newest' });
+    this.navCtrl.push(ProductPage, { sortOrder: 'newest' });
   }
   ionViewDidLeave() {
    // this.storage.set('cartProducts', this.shared.cartProducts);

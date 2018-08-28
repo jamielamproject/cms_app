@@ -10,10 +10,10 @@
 
   <ion-slides pager="true" dir="{{shared.dir}}">
     <ion-slide *ngIf="product!=null">
-      <img src="{{config.url+product.products_image}}" imageViewer>
+      <img src="{{config.imgUrl+product.products_image}}" imageViewer>
     </ion-slide>
     <ion-slide *ngFor="let b of product.images">
-      <img src="{{config.url+b.image}}" imageViewer>
+      <img src="{{config.imgUrl+b.image}}" imageViewer>
     </ion-slide>
   </ion-slides>
 
