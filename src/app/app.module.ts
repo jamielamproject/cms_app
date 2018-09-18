@@ -28,10 +28,12 @@ import { ProductDetailPage } from '../pages/product-detail/product-detail';
 import { CartPage } from '../pages/cart/cart';
 import { ShippingAddressPage } from '../pages/shipping-address/shipping-address';
 import { ShippingMethodPage } from '../pages/shipping-method/shipping-method';
+import { OrderPage } from '../pages/order/order'
 //Provide
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { ConfigProvider } from '../providers/config/config';
 import { LoadingProvider } from '../providers/loading/loading';
+import { AlertProvider } from '../providers/alert/alert';
 import { SharedDataProvider } from '../providers/shared-data/shared-data';
 import { Toast } from '@ionic-native/toast';
 // Components
@@ -60,6 +62,7 @@ export function createTranslateLoader(http: HttpClient) {
     CartPage,
     ShippingAddressPage,
     ShippingMethodPage,
+    OrderPage
     // SlidingTabsComponent,
   ],
   imports: [
@@ -90,13 +93,15 @@ export function createTranslateLoader(http: HttpClient) {
     ProductDetailPage,
     CartPage,
     ShippingAddressPage,
-    ShippingMethodPage
+    ShippingMethodPage,
+    OrderPage
     // SlidingTabsComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
     ConfigProvider,
+    AlertProvider,
     LocalNotifications,
     LoadingProvider,
     SharedDataProvider,

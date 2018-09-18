@@ -9,6 +9,7 @@ import { LoadingProvider } from '../../providers/loading/loading';
 import { SharedDataProvider } from '../../providers/shared-data/shared-data';
 import { HttpClient } from '@angular/common/http';
 import { ShippingMethodPage } from '../shipping-method/shipping-method'
+import { OrderPage } from '../order/order';
 
 @Component({
   selector: 'page-shipping-address',
@@ -37,33 +38,19 @@ export class ShippingAddressPage {
             this.shared.orderDetails.delivery_firstname = value.firstname;
             this.shared.orderDetails.delivery_lastname = value.lastname;
             this.shared.orderDetails.delivery_street_address = value.street;
-            // this.shared.orderDetails.tax_zone_id = value.zone_id;
-            // this.shared.orderDetails.delivery_state = value.state;
-            // this.shared.orderDetails.delivery_city = value.city;
-            // this.shared.orderDetails.delivery_postcode = value.postcode;
-            // this.shared.orderDetails.delivery_zone = value.zone_name;
-            // this.shared.orderDetails.delivery_country = value.country_name;
-            // this.shared.orderDetails.delivery_country_id = value.countries_id;
-            //this.shared.orderDetails.delivery_telephone = $rootScope.customerData.customers_telephone;
-            // if ($rootScope.zones.length == 0)
           }
 
         }
       }
       if (data.success == 0) { }
     });
+    this.shared.orderDetails.customers_telephone = this.shared.customerData.customers_telephone;
   }
   submit() {
-    // this.navCtrl.push(ShippingMethodPage);
-    this.navCtrl.push(ShippingMethodPage);
+    this.shared.orderDetails.billing_firstname = this.shared.orderDetails.delivery_firstname;
+    this.shared.orderDetails.billing_lastname = this.shared.orderDetails.delivery_lastname;
+    this.shared.orderDetails.billing_street_address = this.shared.orderDetails.delivery_street_address;
+    this.navCtrl.push(OrderPage);
   }
-//   selectCountryPage() {
-//     let modal = this.modalCtrl.create(SelectCountryPage, { page: 'shipping' });
-//     modal.present();
-//   }
-//   selectZonePage() {
-//     let modal = this.modalCtrl.create(SelectZonesPage, { page: 'shipping', id: this.shared.orderDetails.delivery_country_id });
-//     modal.present();
-//   }
 
 }

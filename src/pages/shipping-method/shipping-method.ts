@@ -28,15 +28,7 @@ export class ShippingMethodPage {
   ) {
     this.loading.show();
     var dat: { [k: string]: any } = {};
-    dat.tax_zone_id = this.shared.orderDetails.tax_zone_id;
-    // data.shipping_method = this.shared.orderDetails.shipping_method;
-    // data.shipping_method = 'upsShipping';
-    // data.shipping_method_code = this.shared.orderDetails.shipping_method_code;
-    dat.state = this.shared.orderDetails.delivery_state;
-    dat.city = this.shared.orderDetails.delivery_city;
-    dat.country_id = this.shared.orderDetails.delivery_country_id;
-    dat.postcode = this.shared.orderDetails.delivery_postcode;
-    dat.zone = this.shared.orderDetails.delivery_zone;
+
     dat.street_address = this.shared.orderDetails.delivery_street_address;
     dat.products_weight = this.calculateWeight();
     dat.products_weight_unit = 'g'
@@ -47,7 +39,7 @@ export class ShippingMethodPage {
       if (data.success == 1) {
         var m = data.data.shippingMethods;
         this.shippingMethod = Object.keys(m).map(function (key) { return m[key]; });
-        this.shared.orderDetails.total_tax = data.data.tax;
+        // this.shared.orderDetails.total_tax = data.data.tax;
       }
     });
   }

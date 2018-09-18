@@ -33,29 +33,18 @@ export class SharedDataProvider {
   public selectedFooterPage = "HomePage";
 
   public orderDetails = {
-    tax_zone_id: "",
     delivery_firstname: "",
     delivery_lastname: "",
-    delivery_state: "",
-    delivery_city: "",
-    delivery_postcode: "",
-    delivery_zone: "",
-    delivery_country: "",
-    delivery_country_id: "",
     delivery_street_address: "",
-    delivery_country_code: "",
+    delivery_telephone:"",
 
     billing_firstname: "",
     billing_lastname: "",
-    billing_state: "",
-    billing_city: "",
-    billing_postcode: "",
-    billing_zone: "",
-    billing_country: "",
-    billing_country_id: "",
     billing_street_address: "",
-    billing_country_code: "",
-    total_tax: '',
+    billing_telephone:"",
+
+    customers_telephone: "",
+
     shipping_cost: '',
     shipping_method: '',
     payment_method: '',
@@ -88,7 +77,7 @@ export class SharedDataProvider {
     storage.get('cartProducts').then((val) => {
       if (val != null) this.cartProducts = val;
       this.cartTotalItems();
-      // console.log('cartProducts : ' + val);
+      console.log('cartProducts : ' + JSON.stringify(val));
     });
 
     //---------------- end -----------------

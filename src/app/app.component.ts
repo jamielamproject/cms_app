@@ -13,6 +13,10 @@ import { SpecialPage } from '../pages/special/special'
 import { SharedDataProvider } from '../providers/shared-data/shared-data';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigProvider } from '../providers/config/config';
+import { OrderPage } from '../pages/order/order'
+import { CartPage } from '../pages/cart/cart';
+
+import { ShippingAddressPage } from '../pages/shipping-address/shipping-address';
 
 export interface PageInterface {
   title: string;
@@ -25,8 +29,8 @@ export interface PageInterface {
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = TabsPage;
-  // rootPage:any = LoginPage;
+  // rootPage:any = TabsPage;
+  rootPage:any = ShippingAddressPage;
   pages: PageInterface[] = [
     { title: 'Shop', component: TabsPage, icon: 'home' },
     { title: 'Tab 2', component: Tab2Page, icon: 'contacts' },
