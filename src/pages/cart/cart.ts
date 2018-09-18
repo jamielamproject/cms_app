@@ -11,7 +11,7 @@ import { ProductDetailPage } from '../product-detail/product-detail';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
-// import { ShippingAddressPage } from '../shipping-address/shipping-address';
+import { ShippingAddressPage } from '../shipping-address/shipping-address';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { ProductPage } from '../product/product';
 import { HttpClient } from '@angular/common/http';
@@ -109,13 +109,13 @@ export class CartPage {
   }
   proceedToCheckOut() {
 
-    // if (this.shared.customerData.customers_id == null || this.shared.customerData.customers_id == undefined) {
-    //   let modal = this.modalCtrl.create(LoginPage);
-    //   modal.present();
-    // }
-    // else {
-    //   this.navCtrl.push(ShippingAddressPage);
-    // }
+    if (this.shared.customerData.customers_id == null || this.shared.customerData.customers_id == undefined) {
+      let modal = this.modalCtrl.create(LoginPage);
+      modal.present();
+    }
+    else {
+      this.navCtrl.push(ShippingAddressPage);
+    }
   }
   openProductsPage() {
     this.navCtrl.push(ProductPage, { sortOrder: 'newest' });

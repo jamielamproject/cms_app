@@ -26,7 +26,8 @@ import { SpecialPage } from '../pages/special/special'
 import { LoginPage } from '../pages/login/login';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
 import { CartPage } from '../pages/cart/cart';
-
+import { ShippingAddressPage } from '../pages/shipping-address/shipping-address';
+import { ShippingMethodPage } from '../pages/shipping-method/shipping-method';
 //Provide
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { ConfigProvider } from '../providers/config/config';
@@ -56,7 +57,9 @@ export function createTranslateLoader(http: HttpClient) {
     ProductComponent,
     CurencyPipe,
     ProductDetailPage,
-    CartPage
+    CartPage,
+    ShippingAddressPage,
+    ShippingMethodPage,
     // SlidingTabsComponent,
   ],
   imports: [
@@ -85,7 +88,9 @@ export function createTranslateLoader(http: HttpClient) {
     SpecialPage,
     ProductComponent,
     ProductDetailPage,
-    CartPage
+    CartPage,
+    ShippingAddressPage,
+    ShippingMethodPage
     // SlidingTabsComponent
   ],
   providers: [
