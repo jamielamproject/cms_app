@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -29,8 +29,8 @@ export interface PageInterface {
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  // rootPage:any = TabsPage;
-  rootPage:any = ShippingAddressPage;
+  rootPage:any = TabsPage;
+  // rootPage:any = ShippingAddressPage;
   pages: PageInterface[] = [
     { title: 'Shop', component: TabsPage, icon: 'home' },
     { title: 'Tab 2', component: Tab2Page, icon: 'contacts' },
@@ -43,7 +43,8 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public shared: SharedDataProvider,
     public translate: TranslateService,
-    public config: ConfigProvider) {
+    public config: ConfigProvider,
+    public modalCtrl: ModalController) {
     platform.ready().then(() => {
     //   // Okay, so the platform is ready and our plugins are available.
     //   // Here you can do any higher level native things you might need.
@@ -60,12 +61,22 @@ export class MyApp {
     translate.setDefaultLang('zh');
     translate.use('zh');
   }
-
+  openLanguagePage() {
+    // let modal = this.modalCtrl.create(LanguagePage);
+    // modal.present();
+  }
+  openLoginPage() {
+    // let modal = this.modalCtrl.create(LoginPage);
+    // modal.present();
+    this.nav.push(LoginPage);
+  }
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    // this.nav.setRoot(page.component);
   }
-
+  logOut() {
+    this.shared.logOut();
+  }
 }
 

@@ -64,7 +64,10 @@ export class SharedDataProvider {
     //private fb: Facebook,
   ) {
     console.log('Share : ');
-
+    //get login data
+    storage.get('customerData').then((val) => {
+      if (val != null || val != undefined) this.customerData = val;
+    });
     //getting all allCategories
     this.httpClient.post(config.url + 'allcategories', { language_id: config.langId }).subscribe((data: any) => {
       for (let value of data.data) {

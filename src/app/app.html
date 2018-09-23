@@ -1,17 +1,49 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>{{ 'Menu' | translate }}</ion-title>
+      <ion-buttons start>
+        <button ion-button icon-only (click)="openLanguagePage()">
+          <ion-icon name="globe"></ion-icon>
+        </button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
-    <ion-list>
+  <ion-content class="side-menu">
+
+    <ion-list class="list-avatar">
+      <ion-item *ngIf="shared.customerData.customers_id==null" menuClose (click)="openLoginPage()">
+        <ion-avatar item-start>
+          <ion-icon name="contact"></ion-icon>
+        </ion-avatar>
+        <h2>{{ 'Login & Register' | translate }}</h2>
+        <p>{{ 'Please login or create an account for free' | translate }}</p>
+      </ion-item>
+
+      <ion-item *ngIf="shared.customerData.customers_id!=null" menuClose (click)="openPage('settings')">
+        <ion-avatar item-start>
+          <img src="{{config.imgUrl+shared.customerData.customers_picture}}">
+        </ion-avatar>
+        <h2>{{shared.customerData.customers_firstname +"&nbsp;"+shared.customerData.customers_lastname}}</h2>
+        <p>{{shared.customerData.email}}</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-list class="list-menu">
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
     </ion-list>
   </ion-content>
+
+  <ion-footer>
+    <ion-toolbar>
+      <button *ngIf="shared.customerData.customers_id!=null" menuClose ion-item (click)="logOut()">
+        <ion-icon item-start name="log-out" color="primary"></ion-icon>登出
+      </button>
+    </ion-toolbar>
+  </ion-footer>
 
 </ion-menu>
 
