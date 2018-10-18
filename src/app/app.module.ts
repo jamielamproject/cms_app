@@ -36,6 +36,7 @@ import { LoadingProvider } from '../providers/loading/loading';
 import { AlertProvider } from '../providers/alert/alert';
 import { SharedDataProvider } from '../providers/shared-data/shared-data';
 import { Toast } from '@ionic-native/toast';
+import { ObjectUtils } from '../providers/ObjectUtils';
 // Components
 import { ProductComponent } from '../components/product/product';
 
@@ -107,6 +108,7 @@ export function createTranslateLoader(http: HttpClient) {
     SharedDataProvider,
     Device,
     Toast,
+    ObjectUtils,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

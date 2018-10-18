@@ -85,6 +85,36 @@ export class SharedDataProvider {
 
     //---------------- end -----------------
   }
+  public findByProduectsById(data){
+    this.httpClient.post(this.config.url + 'getallproducts', data).subscribe((data: any) => {
+      if(data.success){
+        const new_cart_id_array = [];
+        data.product_data.forEach(row => {
+          new_cart_id_array.push(row.products_id);
+        });
+        this.cartProducts.forEach((element, index, theArray) => {
+          let products_id = element.products_id;
+          if(new_cart_id_array.indexOf(products_id) == -1){
+            element.products_status = 0;
+          }else {
+            data.product_data.forEach(row => {
+              if(row.products_id == products_id){
+                const obj = this.productToCart(row,[]);
+                theArray[index] = obj;
+                // console.log('element : ' + JSON.stringify(element) );
+              }
+            });
+
+          }
+        });
+        console.log('cartProducts : ' + JSON.stringify(this.cartProducts) );
+      }
+
+    }, (error: any) => {
+    });
+
+  }
+  
   //adding into recent array products
 //   addToRecent(p) {
 //     let found = false;
@@ -106,8 +136,8 @@ export class SharedDataProvider {
 //     });
 //   }
   //adding into cart array products
-  addToCart(product, attArray) {
 
+  productToCart(product, attArray){
     // console.log(this.cartProducts);
     let attributesArray = attArray;
     if (attArray.length == 0 || attArray == null) {
@@ -129,7 +159,6 @@ export class SharedDataProvider {
         });
       }
     }
-    //  if(checkDublicateService(product.products_id,$rootScope.cartProducts)==false){
 
     let pprice = product.products_price
     let on_sale = false;
@@ -137,9 +166,7 @@ export class SharedDataProvider {
       pprice = product.discount_price;
       on_sale = true;
     }
-    // console.log("in side producs detail");
-    // console.log(attributesArray);
-    // console.log(this.cartProducts);
+
     let finalPrice = this.calculateFinalPriceService(attributesArray) + parseFloat(pprice);
     let obj = {
       cart_id: product.products_id + this.cartProducts.length,
@@ -160,15 +187,19 @@ export class SharedDataProvider {
       products_name: product.products_name,
       price: pprice,
       subtotal: finalPrice,
-      total: finalPrice
+      total: finalPrice,
+      products_status:product.products_status
     }
+    return obj;
+  }
+  addToCart(product, attArray) {
+    const obj = this.productToCart(product, attArray);
     this.cartProducts.push(obj);
     this.storage.set('cartProducts', this.cartProducts);
 
     this.cartTotalItems();
 
     // console.log(this.cartProducts);
-    //console.log(this.cartProducts);
   }
   //removing from recent array products
   removeCart(p) {

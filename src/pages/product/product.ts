@@ -75,7 +75,7 @@ export class ProductPage {
     // console.log('data : ' + JSON.stringify(data));
     this.httpClient.post(this.config.url + 'getallproducts', data).subscribe((data: any) => {
       this.httpRunning = false;
-      console.log(data.product_data.length + "   " + JSON.stringify(data));
+      // console.log(data.product_data.length + "   " + JSON.stringify(data));
       // this.infinite.complete();
       if (this.page == 0) { this.products = new Array; this.loading.hide(); this.scrollToTop(); }
       if (data.success == 1) {
@@ -108,27 +108,27 @@ export class ProductPage {
 
   }
 
-  getSortProducts(value) {
+  // getSortProducts(value) {
 
-    if (value == 'Newest') value = 'newest';
-    else if (value == 'A - Z') value = 'a to z';
-    else if (value == 'Z - A') value = 'z to a';
-    else if (value == 'Price : high - low') value = 'high to low';
-    else if (value == 'low to high') value = 'low to high';
-    else if (value == 'Top Seller') value = 'top seller';
-    else if (value == 'Special Products') value = 'special';
-    else if (value == 'Most Liked') value = 'most liked';
-    else value = value;
+  //   if (value == 'Newest') value = 'newest';
+  //   else if (value == 'A - Z') value = 'a to z';
+  //   else if (value == 'Z - A') value = 'z to a';
+  //   else if (value == 'Price : high - low') value = 'high to low';
+  //   else if (value == 'low to high') value = 'low to high';
+  //   else if (value == 'Top Seller') value = 'top seller';
+  //   else if (value == 'Special Products') value = 'special';
+  //   else if (value == 'Most Liked') value = 'most liked';
+  //   else value = value;
 
-    //console.log(value);
-    if (value == this.sortOrder) return 0;
-    else {
-      this.sortOrder = value;
-      // this.infinite.enable(true);
-      this.page = 0;
-      this.getProducts(null);
-    }
-  }
+  //   //console.log(value);
+  //   if (value == this.sortOrder) return 0;
+  //   else {
+  //     this.sortOrder = value;
+  //     // this.infinite.enable(true);
+  //     this.page = 0;
+  //     this.getProducts(null);
+  //   }
+  // }
   // openSortBy() {
   //   var buttonArray = [];
   //   this.translate.get(this.sortArray).subscribe((res) => {
@@ -154,22 +154,22 @@ export class ProductPage {
 
 
   // }
-  changeLayout() {
-    if (this.productView == 'list') this.productView = "grid";
-    else this.productView = "list";
+  // changeLayout() {
+  //   if (this.productView == 'list') this.productView = "grid";
+  //   else this.productView = "list";
 
-    this.scrollToTop();
-  }
+  //   this.scrollToTop();
+  // }
   scrollToTop() {
     this.content.scrollToTop(700);
     this.scrollTopButton = false;
   }
-  onScroll(e) {
-    if (e.scrollTop >= 1200) this.scrollTopButton = true;
-    if (e.scrollTop < 1200) this.scrollTopButton = false;
-    //else this.scrollTopButton=false;
-    //   console.log(e);
-  }
+  // onScroll(e) {
+  //   if (e.scrollTop >= 1200) this.scrollTopButton = true;
+  //   if (e.scrollTop < 1200) this.scrollTopButton = false;
+  //   //else this.scrollTopButton=false;
+  //   //   console.log(e);
+  // }
   openCart() {
     this.navCtrl.push(CartPage);
   }

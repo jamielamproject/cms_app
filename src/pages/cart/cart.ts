@@ -15,7 +15,7 @@ import { ShippingAddressPage } from '../shipping-address/shipping-address';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { ProductPage } from '../product/product';
 import { HttpClient } from '@angular/common/http';
-
+import { ObjectUtils } from '../../providers/ObjectUtils';
 @Component({
   selector: 'page-cart',
   animations: [
@@ -47,7 +47,24 @@ export class CartPage {
     public storage: Storage,
     public events: Events,
     public modalCtrl: ModalController,
+    private ObjectUtils : ObjectUtils,
   ) {
+    let cart_id_array = this.getIdsByCardProduct();
+    if(cart_id_array.length > 0){
+      let data = {"categories_id":"","page_number":0,"type":"newest","language_id":"1","products_ids":cart_id_array};
+      this.shared.findByProduectsById(data);
+    }
+    
+  }
+  getIdsByCardProduct(){
+    let data = [];
+    if(this.ObjectUtils.isFilledArray(this.shared.cartProducts)){
+      this.shared.cartProducts.forEach(element => {
+        data.push(element.products_id);
+      });
+    }
+    // console.log('data : ' + JSON.stringify(data));
+    return data;
   }
   totalPrice() {
     var price = 0;
