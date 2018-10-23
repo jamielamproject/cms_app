@@ -80,7 +80,7 @@ export class SharedDataProvider {
     storage.get('cartProducts').then((val) => {
       if (val != null) this.cartProducts = val;
       this.cartTotalItems();
-      console.log('cartProducts : ' + JSON.stringify(val));
+      // console.log('cartProducts : ' + JSON.stringify(val));
     });
 
     //---------------- end -----------------

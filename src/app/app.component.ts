@@ -30,7 +30,7 @@ export interface PageInterface {
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:any = TabsPage;
-  // rootPage:any = ShippingAddressPage;
+  // rootPage:any = CartPage;
   pages: PageInterface[] = [
     { title: 'Shop', component: TabsPage, icon: 'home' },
     { title: 'Tab 2', component: Tab2Page, icon: 'contacts' },

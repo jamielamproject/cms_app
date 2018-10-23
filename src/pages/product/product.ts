@@ -34,6 +34,8 @@ export class ProductPage {
   categoryName = '';
   page = 0;
   applyFilter = false;
+  filters = [];
+  selectedFilters = [];
   sortOrder = 'newest';
 
   httpRunning = true;
@@ -72,11 +74,11 @@ export class ProductPage {
     data.page_number = this.page;
     data.type = this.sortOrder;
     data.language_id = this.config.langId;
-    // console.log('data : ' + JSON.stringify(data));
+    console.log('data : ' + JSON.stringify(data));
     this.httpClient.post(this.config.url + 'getallproducts', data).subscribe((data: any) => {
       this.httpRunning = false;
       // console.log(data.product_data.length + "   " + JSON.stringify(data));
-      // this.infinite.complete();
+      this.infinite.complete();
       if (this.page == 0) { this.products = new Array; this.loading.hide(); this.scrollToTop(); }
       if (data.success == 1) {
         this.page++;
@@ -85,8 +87,8 @@ export class ProductPage {
           this.products.push(value);
         }
       }
-      // if (data.success == 1 && data.product_data.length == 0) { this.infinite.enable(false); }
-      // if (data.success == 0) { this.infinite.enable(false); }
+      if (data.success == 1 && data.product_data.length == 0) { this.infinite.enable(false); }
+      if (data.success == 0) { this.infinite.enable(false); }
 
     }, (error: any) => {
       this.httpRunning = false;
@@ -97,7 +99,7 @@ export class ProductPage {
    //changing tab
    changeTab(c) {
     this.applyFilter = false;
-    // this.infinite.enable(true);
+    this.infinite.enable(true);
     this.page = 0;
     if (c == '') this.selectedTab = c
     else this.selectedTab = c.id;
@@ -164,12 +166,13 @@ export class ProductPage {
     this.content.scrollToTop(700);
     this.scrollTopButton = false;
   }
-  // onScroll(e) {
-  //   if (e.scrollTop >= 1200) this.scrollTopButton = true;
-  //   if (e.scrollTop < 1200) this.scrollTopButton = false;
-  //   //else this.scrollTopButton=false;
-  //   //   console.log(e);
-  // }
+  onScroll(e) {
+    if (e.scrollTop >= 1200) this.scrollTopButton = true;
+    if (e.scrollTop < 1200) this.scrollTopButton = false;
+    //else this.scrollTopButton=false;
+      // console.log(e);
+      // console.log('scrollTopButton : ' + e.scrollTop + '---'+this.scrollTopButton);
+  }
   openCart() {
     this.navCtrl.push(CartPage);
   }

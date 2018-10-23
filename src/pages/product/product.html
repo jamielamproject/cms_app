@@ -32,7 +32,7 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-content>
+<ion-content class="page-products" (ionScroll)="onScroll($event)">
   <ion-grid *ngIf="productView=='grid'">
     <ion-col *ngFor="let p of products" col-6>
       <product [data]="p" [type]="'normal'"></product>
@@ -42,4 +42,11 @@
       <h6 text-center>No Products Found!</h6>
     </ion-col>
   </ion-grid>
+
+  <ion-infinite-scroll #infinite (ionInfinite)="getProducts($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
 </ion-content>
+
+
