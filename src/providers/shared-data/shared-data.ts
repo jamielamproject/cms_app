@@ -9,7 +9,7 @@ import { LoadingProvider } from '../loading/loading';
 import { Device } from '@ionic-native/device';
 // import { Facebook } from '@ionic-native/facebook';
 // import { FCM } from '@ionic-native/fcm';
-
+import {ObjectUtils} from '../ObjectUtils'
 @Injectable()
 export class SharedDataProvider {
 
@@ -59,7 +59,8 @@ export class SharedDataProvider {
     public events: Events,
     // private push: Push,
     public platform: Platform,
-    private device: Device
+    private device: Device,
+    private ObjectUtils :ObjectUtils,
     // private fcm: FCM
     //private fb: Facebook,
   ) {
@@ -99,6 +100,9 @@ export class SharedDataProvider {
           }else {
             data.product_data.forEach(row => {
               if(row.products_id == products_id){
+                const customers_basket_quantity = element.customers_basket_quantity;
+                // console.log('customers_basket_quantity --' + customers_basket_quantity);
+                row.customers_basket_quantity = this.ObjectUtils.isEmptyField(customers_basket_quantity) ? 1 : customers_basket_quantity;
                 const obj = this.productToCart(row,[]);
                 theArray[index] = obj;
                 // console.log('element : ' + JSON.stringify(element) );
@@ -162,17 +166,23 @@ export class SharedDataProvider {
 
     let pprice = product.products_price
     let on_sale = false;
+    let customers_basket_quantity = product.customers_basket_quantity;
     if (product.discount_price != null) {
       pprice = product.discount_price;
       on_sale = true;
     }
-
     let finalPrice = this.calculateFinalPriceService(attributesArray) + parseFloat(pprice);
+    let finalPrice_qty = finalPrice;
+    console.log('customers_basket_quantity : ' + customers_basket_quantity)
+    if(!this.ObjectUtils.isEmptyField(customers_basket_quantity)){
+      finalPrice_qty = finalPrice * customers_basket_quantity;
+    }
+    console.log('finalPrice_qty : ' + finalPrice_qty)
     let obj = {
       cart_id: product.products_id + this.cartProducts.length,
       products_id: product.products_id,
       manufacture: product.manufacturers_name,
-      customers_basket_quantity: 1,
+      customers_basket_quantity: this.ObjectUtils.isEmptyField(customers_basket_quantity) ? 1 : customers_basket_quantity,
       final_price: finalPrice,
       model: product.products_model,
       categories_id: product.categories_id,
@@ -186,8 +196,8 @@ export class SharedDataProvider {
       attributes: attributesArray,
       products_name: product.products_name,
       price: pprice,
-      subtotal: finalPrice,
-      total: finalPrice,
+      subtotal: finalPrice_qty,
+      total: finalPrice_qty,
       products_status:product.products_status
     }
     return obj;
