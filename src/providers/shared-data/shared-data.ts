@@ -48,7 +48,7 @@ export class SharedDataProvider {
     shipping_cost: '',
     shipping_method: '',
     payment_method: '',
-    comments: ''
+    comments: '',
   };
 
   constructor(
@@ -177,7 +177,7 @@ export class SharedDataProvider {
     if(!this.ObjectUtils.isEmptyField(customers_basket_quantity)){
       finalPrice_qty = finalPrice * customers_basket_quantity;
     }
-    console.log('finalPrice_qty : ' + finalPrice_qty)
+    // console.log('finalPrice_qty : ' + finalPrice_qty)
     let obj = {
       cart_id: product.products_id + this.cartProducts.length,
       products_id: product.products_id,

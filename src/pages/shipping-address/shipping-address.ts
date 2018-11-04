@@ -45,6 +45,11 @@ export class ShippingAddressPage {
       if (data.success == 0) { }
     });
     this.shared.orderDetails.customers_telephone = this.shared.customerData.customers_telephone;
+  
+    this.shared.orderDetails.delivery_firstname = "1";
+    this.shared.orderDetails.delivery_lastname = "2";
+    this.shared.orderDetails.delivery_street_address ="3";
+    this.shared.orderDetails.customers_telephone ="4";
   }
   submit() {
     this.shared.orderDetails.billing_firstname = this.shared.orderDetails.delivery_firstname;

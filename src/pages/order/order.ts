@@ -22,7 +22,7 @@ declare var braintree;
 })
 export class OrderPage {
   @ViewChild(Content) content: Content;
-
+  total: any;
   orderDetail = {};//include shipping address, billing address,  shipping methods.
   products = [];
   couponArray = [];
@@ -55,24 +55,30 @@ export class OrderPage {
     public translate: TranslateService,
 ) {
     // shared.orderDetails.payment_method = 'cash_on_delivery';
+    this.totalPrice();
   }
+
+  totalPrice() {
+    var price = 0;
+    for (let value of this.shared.cartProducts) {
+      price = price + value.total;
+    }
+    this.total = price;
+  };
 
   //============================================================================================  
   //placing order
   proceedToCheckOut = function () {
     this.loading.autoHide(5000);
     this.orderDetail.customers_id = this.shared.customerData.customers_id;
-    this.orderDetail.customers_name = this.shared.orderDetail.delivery_firstname + " " + this.shared.orderDetail.delivery_lastname;
-    this.orderDetail.delivery_name = this.shared.orderDetail.billing_firstname + " " + this.shared.orderDetail.billing_lastname;
+    this.orderDetail.customers_name = this.orderDetail.delivery_firstname + " " + this.orderDetail.delivery_lastname;
+    this.orderDetail.delivery_name = this.orderDetail.delivery_firstname + " " + this.orderDetail.delivery_lastname;
     this.orderDetail.email = this.shared.customerData.email;
-    this.orderDetail.customers_telephone = this.shared.orderDetail.customers_telephone;
-
     this.orderDetail.products = this.products;
-
-    this.orderDetail.totalPrice = this.totalAmountWithDisocunt;
-    // this.orderDetail.nonce = nonce;
     this.orderDetail.language_id = this.config.langId;
+    this.orderDetail.totalPrice = this.total;
     var dat = this.orderDetail;
+    console.log('orderDetail : ' + JSON.stringify(this.orderDetail));
     this.httpClient.post(this.config.url + 'addtoorder', dat).subscribe((data:any) => {
       //this.loading.hide();
       if (data.success == 1) {
@@ -93,8 +99,9 @@ export class OrderPage {
   };
 
   ngOnInit() {
-    this.orderDetail = (JSON.parse(JSON.stringify(this.shared.orderDetails)));
-    this.products = (JSON.parse(JSON.stringify(this.shared.cartProducts)));
+    this.shared.orderDetails.payment_method = 'cash_on_delivery';
+    this.orderDetail = this.shared.orderDetails;
+    this.products = this.shared.cartProducts
 
   }
   openHomePage() {
