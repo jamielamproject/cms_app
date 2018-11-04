@@ -69,7 +69,7 @@ export class OrderPage {
   //============================================================================================  
   //placing order
   proceedToCheckOut = function () {
-    this.loading.autoHide(5000);
+    this.loading.autoHide(1000);
     this.orderDetail.customers_id = this.shared.customerData.customers_id;
     this.orderDetail.customers_name = this.orderDetail.delivery_firstname + " " + this.orderDetail.delivery_lastname;
     this.orderDetail.delivery_name = this.orderDetail.delivery_firstname + " " + this.orderDetail.delivery_lastname;
