@@ -32,7 +32,8 @@ export class MyApp {
   rootPage:any = TabsPage;
   // rootPage:any = CartPage;
   pages: PageInterface[] = [
-    { title: 'Shop', component: TabsPage, icon: 'home' },
+    { title: 'Shop', component: ProductPage, icon: 'home' },
+    // { title: 'Shop', component: TabsPage, icon: 'home' },
     { title: 'Tab 2', component: Tab2Page, icon: 'contacts' },
     { title: 'Special', component: SpecialPage, icon: 'shuffle' },
   ];
@@ -73,7 +74,7 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    // this.nav.setRoot(page.component);
+    this.nav.setRoot(page.component);
   }
   logOut() {
     this.shared.logOut();

@@ -68,6 +68,7 @@ export class SharedDataProvider {
     //get login data
     storage.get('customerData').then((val) => {
       if (val != null || val != undefined) this.customerData = val;
+      console.log('customerData : ' + JSON.stringify(this.customerData));
     });
     //getting all allCategories
     this.httpClient.post(config.url + 'allcategories', { language_id: config.langId }).subscribe((data: any) => {
