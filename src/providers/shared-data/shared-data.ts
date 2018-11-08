@@ -5,6 +5,9 @@ import { Storage } from '@ionic/storage';
 import { ConfigProvider } from '../config/config';
 import { Events, Platform } from 'ionic-angular';
 import { LoadingProvider } from '../loading/loading';
+import { Globalization } from '@ionic-native/globalization';
+import { TranslateService } from '@ngx-translate/core';
+
 // import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { Device } from '@ionic-native/device';
 // import { Facebook } from '@ionic-native/facebook';
@@ -31,6 +34,7 @@ export class SharedDataProvider {
   public tempdata: { [k: string]: any } = {};
   public dir = "ltr";
   public selectedFooterPage = "HomePage";
+  public lang_code = "";
 
   public orderDetails = {
     delivery_firstname: "",
@@ -61,6 +65,8 @@ export class SharedDataProvider {
     public platform: Platform,
     private device: Device,
     private ObjectUtils :ObjectUtils,
+    private globalization:Globalization,
+    public translate: TranslateService,
     // private fcm: FCM
     //private fb: Facebook,
   ) {
@@ -86,6 +92,40 @@ export class SharedDataProvider {
     });
 
     //---------------- end -----------------
+  }
+  public initial_language(){
+    this.storage.get('lang_code').then((val) => {
+      console.log('lang_code : ' + val);
+      if (val != null || val != undefined){
+        this.lang_code = val;
+        console.log('Have Langyage');
+        this.translate.setDefaultLang(this.lang_code);
+      } else {
+        console.log('Dont Have Langyage');
+      this.getDeviceLanguage();
+      }
+    });
+  }
+  public setLangCode(code){
+    this.storage.set('lang_code', code);    
+    console.log('setLangCode : ' + code);
+  }
+  public getDeviceLanguage(){
+    this.globalization.getPreferredLanguage()
+    .then((res) =>{
+      if('zh-HK' == res.value){
+        this.lang_code = 'hk';
+      }else if('zh-TW' == res.value){
+        this.lang_code = 'hk';
+      }else {
+        this.lang_code = 'en';
+      }
+      this.translate.setDefaultLang(this.lang_code);
+      // console.log('lang --'+JSON.stringify(res));
+      console.log('getDeviceLanguage --'+this.lang_code);
+      this.setLangCode(this.lang_code);
+    }) 
+    .catch(e => console.log('lang_code error --'+e));
   }
   public findByProduectsById(data){
     this.httpClient.post(this.config.url + 'getallproducts', data).subscribe((data: any) => {
@@ -227,10 +267,10 @@ export class SharedDataProvider {
     this.storage.set('cartProducts', this.cartProducts);
     this.cartTotalItems();
   }
-//   emptyRecentViewed() {
-//     this.recentViewedProducts = [];
-//     this.storage.set('recentViewedProducts', this.recentViewedProducts);
-//   }
+  emptyRecentViewed() {
+    this.recentViewedProducts = [];
+    this.storage.set('recentViewedProducts', this.recentViewedProducts);
+  }
   calculateFinalPriceService(attArray) {
     let total = 0;
     attArray.forEach((value, index) => {
@@ -298,6 +338,7 @@ export class SharedDataProvider {
 
   login(data) {
     this.customerData = data;
+    // console.log('login --'+JSON.stringify(this.customerData));
     this.storage.set('customerData', this.customerData);
     // this.subscribePush();
   }

@@ -11,7 +11,8 @@ import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Device } from '@ionic-native/device';
-
+import { Camera } from '@ionic-native/camera';
+import { Globalization } from '@ionic-native/globalization';
 // import { SlidingTabsComponent } from '../components/sliding-tabs/sliding-tabs';
 
 
@@ -29,6 +30,9 @@ import { CartPage } from '../pages/cart/cart';
 import { ShippingAddressPage } from '../pages/shipping-address/shipping-address';
 import { ShippingMethodPage } from '../pages/shipping-method/shipping-method';
 import { OrderPage } from '../pages/order/order'
+import { MyAccountPage } from '../pages/my-account/my-account';
+import { LanguagePage } from '../pages/language/language';
+
 //Provide
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { ConfigProvider } from '../providers/config/config';
@@ -63,7 +67,9 @@ export function createTranslateLoader(http: HttpClient) {
     CartPage,
     ShippingAddressPage,
     ShippingMethodPage,
-    OrderPage
+    OrderPage,
+    MyAccountPage,
+    LanguagePage
     // SlidingTabsComponent,
   ],
   imports: [
@@ -95,7 +101,9 @@ export function createTranslateLoader(http: HttpClient) {
     CartPage,
     ShippingAddressPage,
     ShippingMethodPage,
-    OrderPage
+    OrderPage,
+    MyAccountPage,
+    LanguagePage
     // SlidingTabsComponent
   ],
   providers: [
@@ -109,6 +117,8 @@ export function createTranslateLoader(http: HttpClient) {
     Device,
     Toast,
     ObjectUtils,
+    Camera,
+    Globalization,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -21,7 +21,7 @@
         <p>{{ 'Please login or create an account for free' | translate }}</p>
       </ion-item>
 
-      <ion-item *ngIf="shared.customerData.customers_id!=null" menuClose (click)="openPage('settings')">
+      <ion-item *ngIf="shared.customerData.customers_id!=null" menuClose (click)="openPage('my_account')">
         <ion-avatar item-start>
           <img src="{{config.imgUrl+shared.customerData.customers_picture}}">
         </ion-avatar>
@@ -38,8 +38,8 @@
   </ion-content>
 
   <ion-footer>
-    <ion-toolbar>
-      <button *ngIf="shared.customerData.customers_id!=null" menuClose ion-item (click)="logOut()">
+    <ion-toolbar style="padding:0px;margin:0px;">
+      <button style="padding:5px;" *ngIf="shared.customerData.customers_id!=null" menuClose ion-item (click)="logOut()">
         <ion-icon item-start name="log-out" color="primary"></ion-icon>登出
       </button>
     </ion-toolbar>

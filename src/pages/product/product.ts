@@ -50,7 +50,6 @@ export class ProductPage {
     public httpClient: HttpClient,
     public actionSheet: ActionSheetController
   ) {
-    translate.use('zh');
     if (shared.dir == "rtl") this.side = "left";
 
     if (this.navParams.get('id') != undefined) this.selectedTab = this.categoryId = this.navParams.get('id');
