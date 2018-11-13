@@ -17,7 +17,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { OrderPage } from '../pages/order/order'
 import { CartPage } from '../pages/cart/cart';
 import { MyAccountPage } from '../pages/my-account/my-account';
-
 import { ShippingAddressPage } from '../pages/shipping-address/shipping-address';
 
 export interface PageInterface {
@@ -36,7 +35,7 @@ export class MyApp {
   pages: PageInterface[] = [
     { title: 'Shop', component: ProductPage, icon: 'home' },
     // { title: 'Shop', component: TabsPage, icon: 'home' },
-    { title: 'My Order', component: Tab2Page, icon: 'contacts' },
+    { title: 'My Order', component: OrderPage, icon: 'contacts' },
     // { title: 'Special', component: SpecialPage, icon: 'shuffle' },
   ];
 

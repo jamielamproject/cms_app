@@ -15,7 +15,7 @@
 <ion-content class="page-order">
     <ion-card>
         <ion-card-header>
-            收貨人的姓名
+            {{'Receiver Name' | translate}}
         </ion-card-header>
         <ion-card-content>
             {{orderDetail.delivery_lastname}} {{orderDetail.delivery_firstname}}
@@ -24,7 +24,7 @@
 
     <ion-card style="margin-top:10px;">
         <ion-card-header>
-            收貨地址
+            {{'Receiver Name' | translate}}
         </ion-card-header>
         <ion-card-content>
             {{orderDetail.delivery_street_address}}
@@ -33,7 +33,7 @@
 
     <ion-card style="margin-top:10px;">
         <ion-card-header>
-            聯絡電話
+            {{'Contact Number' | translate}}
         </ion-card-header>
         <ion-card-content>
             {{orderDetail.customers_telephone}}
@@ -43,7 +43,7 @@
         <ion-card-content>
             <ion-list>
                 <ion-item>
-                    <ion-label color="dark">{{'付款方法'|translate}}</ion-label>
+                    <ion-label color="dark">{{'Payment Method'|translate}}</ion-label>
                     <ion-select [(ngModel)]="orderDetail.payment_method" okText="{{'ok'|translate}}" cancelText="{{'Cancel'|translate}}">
                     <ion-option value="cash_on_delivery">現金，到貨付款</ion-option>
                     </ion-select>
@@ -54,7 +54,7 @@
 
     <ion-card class="order-product" style="margin-top:10px;">
         <ion-card-header>
-            產品
+            {{'Product'|translate}}
         </ion-card-header>
         <ion-card-content *ngFor="let product of products">
             <ion-row>
@@ -69,18 +69,18 @@
                     <img class="cart_image" src="{{config.imgUrl+product.image}}">
                 </ion-thumbnail>
                 <ion-row>
-                    <ion-col col-6>價錢&nbsp;:&nbsp;</ion-col>
+                    <ion-col col-6>{{'Price'|translate}}&nbsp;:&nbsp;</ion-col>
                     <ion-col col-6 >{{product.price| currency }}</ion-col>
                 </ion-row>
 
                 <ion-row>
-                    <ion-col col-6>數量&nbsp;:&nbsp;</ion-col>
+                    <ion-col col-6>{{'Qty'|translate}}&nbsp;:&nbsp;</ion-col>
                     <ion-col col-6>{{product.customers_basket_quantity}}</ion-col>
                 </ion-row>
 
                 <ion-row>
                     <ion-col col-6>
-                        <strong>總價</strong>&nbsp;:&nbsp;</ion-col>
+                        <strong>{{'Total Price'|translate}}</strong>&nbsp;:&nbsp;</ion-col>
                     <ion-col col-6>
                         <strong>{{product.total| currency}}</strong>
                     </ion-col>
@@ -91,18 +91,18 @@
 
     <ion-card style="margin-top:10px;">
         <ion-card-header>
-            總結
+            {{'Summary'|translate}}
         </ion-card-header>
         <ion-card-content>
             <ion-row>
                 <ion-col col-6>
-                    貨品價格
+                    {{'Product Price'|translate}}
                 </ion-col>
                 <ion-col col-6 text-right>
                     {{total| currency}}
                 </ion-col>
                 <ion-col col-6>
-                    運輸費用
+                    {{'Shipping Cost'|translate}}
                 </ion-col>
                 <ion-col col-6 text-right>
                     {{0| currency}}
@@ -125,7 +125,7 @@
 <ion-footer *ngIf="products.length !=0" class="cart_footer" color="footer_color">
     <ion-toolbar color="light">
         <ion-buttons right>
-            <button ion-button solid color="cartbtn" style="min-width: 100px;" (click)="proceedToCheckOut()">結帳</button>
+            <button ion-button solid color="cartbtn" style="min-width: 100px;" (click)="proceedToCheckOut()">{{'Checkout'|translate}}</button>
         </ion-buttons>
     </ion-toolbar>
 </ion-footer>
