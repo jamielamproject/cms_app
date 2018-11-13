@@ -18,6 +18,7 @@ import { OrderPage } from '../pages/order/order'
 import { CartPage } from '../pages/cart/cart';
 import { MyAccountPage } from '../pages/my-account/my-account';
 import { ShippingAddressPage } from '../pages/shipping-address/shipping-address';
+import { MyOrdersPage } from '../pages/my-orders/my-orders';
 
 export interface PageInterface {
   title: string;
@@ -30,12 +31,12 @@ export interface PageInterface {
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = ProductPage;
-  // rootPage:any = CartPage;
+  // rootPage:any = ProductPage;
+  rootPage:any = MyOrdersPage;
   pages: PageInterface[] = [
     { title: 'Shop', component: ProductPage, icon: 'home' },
     // { title: 'Shop', component: TabsPage, icon: 'home' },
-    { title: 'My Order', component: OrderPage, icon: 'contacts' },
+    { title: 'My Order', component: MyOrdersPage, icon: 'contacts' },
     // { title: 'Special', component: SpecialPage, icon: 'shuffle' },
   ];
 

@@ -95,20 +95,20 @@ export class SharedDataProvider {
   }
   public initial_language(){
     this.storage.get('lang_code').then((val) => {
-      console.log('lang_code : ' + val);
+      // console.log('lang_code : ' + val);
       if (val != null || val != undefined){
         this.lang_code = val;
-        console.log('Have Langyage');
+        // console.log('Have Langyage');
         this.translate.setDefaultLang(this.lang_code);
       } else {
-        console.log('Dont Have Langyage');
+        // console.log('Dont Have Langyage');
       this.getDeviceLanguage();
       }
     });
   }
   public setLangCode(code){
     this.storage.set('lang_code', code);    
-    console.log('setLangCode : ' + code);
+    // console.log('setLangCode : ' + code);
   }
   public getDeviceLanguage(){
     this.globalization.getPreferredLanguage()
