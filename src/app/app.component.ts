@@ -31,8 +31,8 @@ export interface PageInterface {
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  // rootPage:any = ProductPage;
-  rootPage:any = MyOrdersPage;
+  rootPage:any = ProductPage;
+  // rootPage:any = MyOrdersPage;
   pages: PageInterface[] = [
     { title: 'Shop', component: ProductPage, icon: 'home' },
     // { title: 'Shop', component: TabsPage, icon: 'home' },

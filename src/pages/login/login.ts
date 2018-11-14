@@ -21,7 +21,7 @@ import { TabsPage } from '../../pages/tabs/tabs';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  formData = { email: '', password: '' };
+  formData = { email: 'test123@gmail.com', password: '1234567' };
   errorMessage = '';
   constructor(public navCtrl: NavController,
      public navParams: NavParams,

@@ -24,7 +24,7 @@
     "Select Language":"選擇語言",
     "Login":"登錄",
     "Edit Profile":"編輯個人資料",
-    "First Name":"First Name",
+    "First Name":"名字",
     "Last Name":"姓氏",
     "Mobile":"電話",
     "Date of Birth":"出生日期",
@@ -55,8 +55,18 @@
     "My Cart":"購物車",
     "Your cart is empty":"您的購物車是空的",
     "continue shopping":"繼續購物",
-    "Remove":"去掉"
-     
-    
-
+    "Remove":"去掉",
+    "My Order":"購物記錄",
+    "Order ID":"訂單編號",
+    "Date":"日期",
+    "Status":"狀態",
+    "Pending":"等待中",
+    "Completed":"已完成",
+    "Cash On Delivery":"貨到付款",
+    "Order Details":"訂單信息",
+    "Customer Orders":"顧客訂單",
+    "Explore":"探索",
+    "Add To Cart":"添加到購物車",
+    "Password":"密碼",
+    "Email":"電子郵件"
   }

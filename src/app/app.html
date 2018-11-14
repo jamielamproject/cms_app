@@ -32,7 +32,7 @@
 
     <ion-list class="list-menu">
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+          {{p.title | translate}}<ion-icon item-left name="{{p.icon}}"></ion-icon>
       </button>
     </ion-list>
   </ion-content>
