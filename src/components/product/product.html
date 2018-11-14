@@ -28,8 +28,8 @@
   </ion-buttons> -->
 
   <ion-buttons *ngIf="type=='normal'">
-    <button ion-button block color="secondary" *ngIf="config.cartButton==1 && p.products_quantity!=0" (click)="addToCart(p);">ADD TO CART</button>
-    <button ion-button block color="danger" *ngIf="config.cartButton==1 && p.products_quantity==0">OUT OF STOCK</button>
+    <button ion-button block color="secondary" *ngIf="config.cartButton==1 && p.products_quantity!=0" (click)="addToCart(p);">{{'ADD TO CART' | translate}}</button>
+    <button ion-button block color="danger" *ngIf="config.cartButton==1 && p.products_quantity==0">{{'OUT OF STOCK' | translate }}</button>
   </ion-buttons>
 
   <!-- <ion-buttons class="bar-buttons-remove"  *ngIf="type=='recent'">
