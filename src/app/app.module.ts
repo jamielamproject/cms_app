@@ -34,6 +34,7 @@ import { MyAccountPage } from '../pages/my-account/my-account';
 import { LanguagePage } from '../pages/language/language';
 import { MyOrdersPage } from '../pages/my-orders/my-orders';
 import { OrderDetailPage } from '../pages/order-detail/order-detail';
+import { ThankYouPage } from '../pages/thank-you/thank-you';
 
 //Provide
 import { LocalNotifications } from '@ionic-native/local-notifications';
@@ -73,7 +74,8 @@ export function createTranslateLoader(http: HttpClient) {
     MyAccountPage,
     LanguagePage,
     MyOrdersPage,
-    OrderDetailPage
+    OrderDetailPage,
+    ThankYouPage
     // SlidingTabsComponent,
   ],
   imports: [
@@ -109,7 +111,8 @@ export function createTranslateLoader(http: HttpClient) {
     MyAccountPage,
     LanguagePage,
     MyOrdersPage,
-    OrderDetailPage
+    OrderDetailPage,
+    ThankYouPage
     // SlidingTabsComponent
   ],
   providers: [

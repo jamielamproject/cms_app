@@ -9,7 +9,7 @@ import { SharedDataProvider } from '../../providers/shared-data/shared-data';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { AlertProvider } from '../../providers/alert/alert';
 import { TranslateService } from '@ngx-translate/core';
-// import { ThankYouPage } from '../thank-you/thank-you';
+import { ThankYouPage } from '../thank-you/thank-you';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -86,7 +86,7 @@ export class OrderPage {
         this.products = [];
         this.orderDetail = {};
         this.shared.orderDetails = {};
-        // this.navCtrl.setRoot(ThankYouPage);
+        this.navCtrl.setRoot(ThankYouPage);
       }
       if (data.success == 0) { this.alert.show(data.message); }
     }, err => {

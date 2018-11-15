@@ -69,9 +69,9 @@ export class CartPage {
   totalPrice() {
     var price = 0;
     for (let value of this.shared.cartProducts) {
-      var pp = value.final_price * value.customers_basket_quantity;
-      price = price + pp;
-    }
+        var pp = value.final_price * value.customers_basket_quantity;
+      if(value.products_status == 1)price = price + pp;
+   }
     this.total = price;
   };
   getSingleProductDetail(id) {

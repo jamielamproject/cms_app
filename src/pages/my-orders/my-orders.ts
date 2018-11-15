@@ -38,12 +38,11 @@ export class MyOrdersPage {
     this.orders = [];
     this.loading.show();
     var dat: { [k: string]: any } = {};
-    dat.customers_id = 4//Testing
-    // dat.customers_id = this.shared.customerData.customers_id; //Production
+    dat.customers_id = this.shared.customerData.customers_id; //Production
     dat.language_id = this.config.langId;
 
     this.httpClient.post(this.config.url + 'getorders', dat).subscribe((data:any) => {
-      // console.log('hi --'+ JSON.stringify(data));
+      console.log('hi --'+ JSON.stringify(data));
       this.loading.hide();
       this.httpRunning = false;
       //$rootScope.address=response.data.data;

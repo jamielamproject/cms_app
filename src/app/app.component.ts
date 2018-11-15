@@ -19,6 +19,7 @@ import { CartPage } from '../pages/cart/cart';
 import { MyAccountPage } from '../pages/my-account/my-account';
 import { ShippingAddressPage } from '../pages/shipping-address/shipping-address';
 import { MyOrdersPage } from '../pages/my-orders/my-orders';
+import { ThankYouPage } from '../pages/thank-you/thank-you';
 
 export interface PageInterface {
   title: string;
@@ -32,7 +33,7 @@ export interface PageInterface {
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:any = ProductPage;
-  // rootPage:any = MyOrdersPage;
+  // rootPage:any = ThankYouPage;
   pages: PageInterface[] = [
     { title: 'Shop', component: ProductPage, icon: 'home' },
     // { title: 'Shop', component: TabsPage, icon: 'home' },
