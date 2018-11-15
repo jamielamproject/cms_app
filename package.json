@@ -48,6 +48,7 @@
     "ionicons": "3.0.0",
     "ng-lazyload-image": "^4.0.0",
     "rxjs": "5.5.11",
+    "splash": "0.3.0",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.26"
   },
@@ -68,9 +69,9 @@
       "cordova-plugin-globalization": {}
     },
     "platforms": [
+      "browser",
       "android",
-      "ios",
-      "browser"
+      "ios"
     ]
   }
 }

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.lch.cms" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>CMS</name>
+<widget id="lch.tchhk.shop" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>買野</name>
     <description>An awesome Ionic/Cordova app.</description>
-    <author email="jamielmproject@gmail.com" href="http://ionicframework.com/">Jamie Project Team</author>
+    <author email="lchtechhhk@gmail.com" href="http://ionicframework.com/">LCH Project Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -84,7 +84,7 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.1.2" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
+    <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="7.0.0" />
     <engine name="ios" spec="4.5.5" />
-    <engine name="browser" spec="5.0.4" />
 </widget>
