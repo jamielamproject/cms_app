@@ -6,36 +6,50 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class AlertProvider {
-  okText = "ok";
-  alertText = "Alert";
+ 
   constructor(
     public alertCtrl: AlertController,
-    translate: TranslateService,
+    public translate: TranslateService,
   ) {
 
-    translate.get(this.okText).subscribe((res) => {
-      this.okText = res;
-    });
-    translate.get(this.alertText).subscribe((res) => {
-      this.alertText = res;
-    });
-
-  }
-  show(text) {
-    let alert = this.alertCtrl.create({
-      title: this.alertText,
-      subTitle: text,
-      buttons: [this.okText]
-    });
-    alert.present();
   }
 
-  showWithTitle(text, title) {
+  multiple_show(title,message,left_text,right_text,right_funtion) {
     let alert = this.alertCtrl.create({
       title: title,
-      subTitle: text,
-      buttons: [this.okText]
+      message: message,
+      buttons: [
+        {
+          text: left_text,
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: right_text,
+          handler: right_funtion
+        }
+      ]
     });
     alert.present();
   }
+
+  // show(text) {
+  //   let alert = this.alertCtrl.create({
+  //     title: this.alertText,
+  //     subTitle: text,
+  //     buttons: [this.okText]
+  //   });
+  //   alert.present();
+  // }
+
+  // showWithTitle(text, title) {
+  //   let alert = this.alertCtrl.create({
+  //     title: title,
+  //     subTitle: text,
+  //     buttons: [this.okText]
+  //   });
+  //   alert.present();
+  // }
 }

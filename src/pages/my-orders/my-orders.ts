@@ -3,7 +3,7 @@
 // Author: VectorCoder Team
 // Author URI: http://vectorcoder.com/
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController,Platform, NavParams } from 'ionic-angular';
 import { ConfigProvider } from '../../providers/config/config';
 import { TranslateService } from '@ngx-translate/core';
 import { SharedDataProvider } from '../../providers/shared-data/shared-data';
@@ -22,17 +22,36 @@ import { ProductPage } from '../product/product';
 export class MyOrdersPage {
   orders = new Array;
   httpRunning = true;
+  public unregisterBackButtonAction: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public httpClient: HttpClient,
     public config: ConfigProvider,
     public shared: SharedDataProvider,
-    translate: TranslateService,
+    public translate: TranslateService,
     public alert: AlertProvider,
-    public loading: LoadingProvider
+    public loading: LoadingProvider,
+    public platform: Platform, 
+    public alertProvider: AlertProvider
   ) {
   }
+  ionViewDidLoad() {
+    this.httpRunning = true;
+    this.getOrders();
+    this.initializeBackButtonCustomHandler();
+  }
+
+  ionViewWillLeave() {
+      // Unregister the custom back button action for this page
+      this.unregisterBackButtonAction && this.unregisterBackButtonAction();
+  }
+
+  initializeBackButtonCustomHandler(): void {
+    this.unregisterBackButtonAction = this.platform.registerBackButtonAction(()=>{
+    }); 
+  }   
+
   getOrders() {
     this.httpRunning = true;
     this.orders = [];
@@ -63,10 +82,6 @@ export class MyOrdersPage {
 
     this.navCtrl.push(OrderDetailPage, { 'data': order });
 
-  }
-  ionViewDidLoad() {
-    this.httpRunning = true;
-    this.getOrders();
   }
   openCart() {
     this.navCtrl.push(CartPage);

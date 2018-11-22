@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, InfiniteScroll, Content, ActionSheetController, Slides } from 'ionic-angular';
+import { NavController, Platform, NavParams, InfiniteScroll, Content, ActionSheetController, Slides } from 'ionic-angular';
 import { ConfigProvider } from '../../providers/config/config';
 import { HttpClient } from '@angular/common/http';
 import { SharedDataProvider } from '../../providers/shared-data/shared-data';
@@ -7,6 +7,7 @@ import { LoadingProvider } from '../../providers/loading/loading';
 import { TranslateService } from '@ngx-translate/core';
 import { share } from 'rxjs/operator/share';
 import { CartPage } from '../cart/cart';
+import { AlertProvider } from '../../providers/alert/alert';
 /**
  * Generated class for the Tab1Page page.
  *
@@ -39,8 +40,9 @@ export class ProductPage {
   sortOrder = 'newest';
 
   httpRunning = true;
-
+  public unregisterBackButtonAction: any;
   constructor(
+    public platform: Platform, 
     public navCtrl: NavController,
     public navParams: NavParams,
     public config: ConfigProvider,
@@ -48,7 +50,8 @@ export class ProductPage {
     public loading: LoadingProvider,
     public translate: TranslateService,
     public httpClient: HttpClient,
-    public actionSheet: ActionSheetController
+    public actionSheet: ActionSheetController,
+    public alertProvider: AlertProvider,
   ) {
     if (shared.dir == "rtl") this.side = "left";
 
@@ -58,6 +61,22 @@ export class ProductPage {
     this.getProducts(null);
     // this.getFilters(this.categoryId);
   }
+  ionViewDidLoad() {
+    this.initializeBackButtonCustomHandler();
+  }
+
+  ionViewWillLeave() {
+      // Unregister the custom back button action for this page
+      this.unregisterBackButtonAction && this.unregisterBackButtonAction();
+  }
+
+  initializeBackButtonCustomHandler(): void {
+    this.unregisterBackButtonAction = this.platform.registerBackButtonAction(()=>{
+      this.alertProvider.multiple_show(this.translate.instant("leave?"),null,this.translate.instant("no"),this.translate.instant("exit"),()=>{
+        this.platform.exitApp();
+      });
+    }); // Priority 101 will override back button handling (we set in app.component.ts) as it is bigger then priority 00 configured in app.component.ts file */
+  }   
 
   getProducts(infiniteScroll) {
     this.httpRunning = true;
@@ -175,7 +194,7 @@ export class ProductPage {
   openCart() {
     this.navCtrl.push(CartPage);
   }
-  ionViewDidLoad() {
+  // ionViewDidLoad() {
    // console.log("loaded");
 
   //  try {
@@ -189,5 +208,5 @@ export class ProductPage {
   // } catch (error) {
 
   // }
-  }
+  // }
 }

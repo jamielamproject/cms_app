@@ -66,5 +66,10 @@
     "Add To Cart":"Add to Cart",
     "Thank You":"Thank You",
     "Continue Shopping":"Continue Shopping",
-    "My Orders":"My Orders"
+    "My Orders":"My Orders",
+    "no":"no",
+    "yes":"yes",
+    "exit":"exit",
+    "leave":"Leave?"
+
   }

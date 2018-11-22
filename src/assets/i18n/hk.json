@@ -73,6 +73,10 @@
     "Email":"電子郵件",
     "Thank You":"多謝",
     "Continue Shopping":"繼續購物",
-    "My Orders":"我的訂單"
+    "My Orders":"我的訂單",
+    "no":"否",
+    "yes":"是",
+    "exit":"退出",
+    "leave?":"離開?"
     
   }
