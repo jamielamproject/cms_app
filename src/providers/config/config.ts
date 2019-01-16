@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 
 export class ConfigProvider {
   public url: string = 'http://52.13.56.6/cms/app/';
-  public imgUrl: string = 'http://52.13.56.6/cms/';
+  public imgUrl: string = 'http://52.13.56.6/cms/'; 
   // public url: string = 'http://52.13.56.6:80/app/';
   // public imgUrl: string = 'http://52.13.56.6:80/';
   // public url: string = 'http://127.0.0.1/cms/app/';
